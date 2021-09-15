@@ -60,6 +60,17 @@ function Square(props) {
     }
 
     handleClick(i) {
+        const locations = [
+          [1, 1],
+          [2, 1],
+          [3, 1],
+          [1, 2],
+          [2, 2],
+          [3, 2],
+          [1, 3],
+          [2, 3],
+          [3, 3]
+        ];
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
         const current = history[history.length - 1];
         const squares = current.squares.slice();
@@ -99,6 +110,8 @@ function Square(props) {
         );
     });
 
+    // const coordinates = history.map()
+
       let status;
       if (winner) {
           status = 'Winner: ' + winner;
@@ -118,7 +131,8 @@ function Square(props) {
           </div>
           <div className="game-info">
             <div>{ status }</div>
-            <ol>{moves}</ol>
+            <ol>{ moves }</ol>
+            {/* <ol>{ coordinates }</ol> */}
           </div>
         </div>
       );

@@ -60,7 +60,7 @@ function Square(props) {
     }
 
     handleClick(i) {
-        const locations = [
+        const coordinates = [
           [1, 1],
           [2, 1],
           [3, 1],
@@ -80,7 +80,8 @@ function Square(props) {
         squares[i] = this.state.xIsNext ? 'X' : 'O';
         this.setState({
             history: history.concat([{
-                squares: squares
+                squares: squares,
+                coordinate: coordinates[i]
             }]),
             stepNumber: history.length,
             xIsNext: !this.state.xIsNext,
@@ -101,7 +102,7 @@ function Square(props) {
 
     const moves = history.map((step, move) => {
         const desc = move ?
-            'Go to move #' + move :
+            'Go to move #' + move + " at column: " + history[move].coordinate[0] + ", row: " + history[move].coordinate[1] :
             'Go to game start';
         return (
             <li key={move}>

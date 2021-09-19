@@ -5,34 +5,35 @@ import React from 'react';
 class Board extends React.Component {
     renderSquare(i) {
         return ( 
-        <Square 
-            value = {this.props.squares[i]} 
-            onClick = {() => {
-                this.props.onClick(i)
-            }}
-        />
+            <Square
+                key = {"square " + 1} 
+                value = {this.props.squares[i]} 
+                onClick = {() => {
+                    this.props.onClick(i)
+                }}
+            />
         );
-}
+    }
 
-render() {  
-    return (
-        <div>
-            <div className="board-row">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
+    renderSquares(n) {
+        let squares = [];
+        for (let i = n; i < n + 3; i++) {
+            squares.push(this.renderSquare(i));
+        }
+        return squares;
+    }
+
+    renderRows(i) {
+        return <div className = "board-row">{this.renderSquares(i)}</div>;
+    }
+
+    render() {  
+        return (
+            <div>
+                {this.renderRows(0)}
+                {this.renderRows(3)}
+                {this.renderRows(6)}
             </div>
-            <div className="board-row">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
-            </div>
-            <div className="board-row">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
-            </div>
-        </div>
         );
     }
 }

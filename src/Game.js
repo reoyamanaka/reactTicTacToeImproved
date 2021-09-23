@@ -63,6 +63,10 @@ class Game extends React.Component {
       const current = history[this.state.stepNumber];
       const winner = calculateWinner(current.squares);
 
+      if (this.state.stepNumber === 9 && calculateWinner(current.squares) == null) {
+        alert("The game is a draw!");
+      }
+
     const moves = history.map((step, move) => {
         const desc = move ?
             'Go to move #' + move + " at column: " + history[move].coordinate[0] + ", row: " + history[move].coordinate[1] :
